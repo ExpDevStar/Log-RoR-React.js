@@ -1,0 +1,16 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user_profile_link {
+	color: #FF8000;
+	font-family: Tahoma, Arial, sans-serif;
+	font-weight: bold;
+}
+a.user_profile_link:hover {
+	text-decoration: underline;
+}
+
+body {
+	font-family: Tahoma, Arial, sans-serif;
+}
