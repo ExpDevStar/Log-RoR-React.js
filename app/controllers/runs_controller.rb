@@ -4,7 +4,11 @@ class RunsController < ApplicationController
 	end
 
 	def create
-
+		@run = Run.new(run_params(params[:run]))
+		if @run.save
+			render :json => Run.find_all_by_user_id(session[:user])
+		else
+		end
 	end
 
 
@@ -13,7 +17,7 @@ class RunsController < ApplicationController
 	end
 	private
 
-	def run_params
+	def run_params(params)
 		return params.permit(:user_id, :date_time, :distance, :name)
 	end
 end

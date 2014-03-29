@@ -1,4 +1,4 @@
-<table>
+<!-- <table>
 	<tr>
 		<td>Distance</td>
 		<td>Start Date</td>
@@ -17,13 +17,15 @@
 			</select>
 		</td>
 		<td>
-			<%= date_field_tag 'start_date' %>
+			date_field_tag 'start_date' %>
 		</td>
 		<td>
-			<%= date_field_tag 'end_date' %>
+			date_field_tag 'end_date' %>
 		</td>
 		<td>
-			<%= button_tag 'Search' %>
+			button_tag 'Search' %>
 		</td>
 	</tr>
-</table>
+</table> -->
+
+<%= react_component('RunBox', {:runs => @runs.to_json}, {:prerender => true}) %>
