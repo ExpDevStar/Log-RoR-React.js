@@ -16,7 +16,7 @@ class UserController < ApplicationController
 
   def index
   	@runs = {
-  		:runs => Run.find_by_user_id(session[:user]),
+  		:runs => Run.find_all_by_user_id(session[:user]),
   		:form => {
   			:csrf_param => request_forgery_protection_token,
   			:csrf_token => form_authenticity_token

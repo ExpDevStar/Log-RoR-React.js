@@ -6,23 +6,24 @@ var RunForm = React.createClass({
 		var name = this.refs.name.getDOMNode().value.trim();
 		var distance = this.refs.distance.getDOMNode().value.trim();
 		var date = this.refs.date.getDOMNode().value.trim();
-		var start_time = this.refs.start_time.getDOMNode().value.trim();
-		var end_time = this.refs.end_time.getDOMNode.value.trim();
-		var notes = this.refs.notes.getDOMNode.value.trim();
+		var start_time = this.refs.start_time.getDOMNode().value;
+		var end_time = this.refs.end_time.getDOMNode().value;
+		var notes = this.refs.notes.getDOMNode().value.trim();
+		console.log("hello people");
 		//validation
 		if (!name || !distance || !date || !start_time || !end_time) return false;
-
 		//submit form data
 		var formData = new FormData(this.refs.form.getDOMNode());
-		this.props.onRunSubmit(formData, 'runs/create');
+		this.props.onRunSubmit(formData, '/runs/create');
 
 		//reset form
-		this.refs.name.getDOMNode().value = '';
-		this.refs.distance.getDOMNode().value = '';
-		this.refs.date.getDOMNode().value = '';
-		this.refs.start_time.getDOMNode().value = '';
-		this.refs.end_time.getDOMNode.value = '';
-		this.refs.notes.getDOMNode.value = '';
+		// this.refs.name.getDOMNode().value = '';
+		// this.refs.distance.getDOMNode().value = '';
+		// this.refs.date.getDOMNode().value = '';
+		// this.refs.start_time.getDOMNode().value = '';
+		// this.refs.end_time.getDOMNode().value = '';
+		// this.refs.notes.getDOMNode().value = '';
+		return false;
 	},
 
 	render: function() {

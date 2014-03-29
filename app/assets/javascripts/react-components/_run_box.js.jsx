@@ -28,7 +28,7 @@ var RunBox = React.createClass({
 				<table>
 					<tbody>
 						<RunForm form={this.state.form} onRunSubmit={this.handleRunSubmit} />
-						<RunList run={this.state.runs} />
+						<RunList runs={this.state.runs} />
 					</tbody>
 				</table>
 			</div>
