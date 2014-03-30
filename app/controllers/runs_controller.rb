@@ -7,7 +7,14 @@ class RunsController < ApplicationController
 		@run = Run.new(run_params(params))
 		@run.user_id = session[:user]
 		if @run.save
-			puts params[:start_time]
+			render :json => Run.find_all_by_user_id(session[:user])
+		else
+		end
+	end
+
+	def update
+		@run = Run.find(params[:id])
+		if @run.update(run_params(params))
 			render :json => Run.find_all_by_user_id(session[:user])
 		else
 		end

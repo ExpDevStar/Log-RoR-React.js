@@ -15,9 +15,10 @@ var RunBox = React.createClass({
 			}
 			if (this.status == 200) {
 				obj.setState({runs: JSON.parse(this.responseText)});
+				console.log("state has changed");
 				return;
 			} else {
-				//respond with error
+				console.error("AHH xhr failed");
 			}
 		}
 	},
@@ -27,7 +28,7 @@ var RunBox = React.createClass({
 			React.DOM.div({className: "run_box"},
 				React.DOM.table({className: "run_data"}, 
 					new RunForm({form: this.state.form, onRunSubmit: this.handleRunSubmit, action: '/runs/create'}),
-					new RunList({runs: this.state.runs, edit: this.state.edit})
+					new RunList({form: this.state.form, runs: this.state.runs, onRunSubmit: this.handleRunSubmit, action: '/runs/update'})
 				)
 			)
 		)

@@ -4,8 +4,8 @@ class CreateRuns < ActiveRecord::Migration
       t.integer		:user_id
       t.string		:name
       t.date			:date
-      t.time			:start_time
-      t.time			:end_time
+      t.string		:start_time
+      t.string		:end_time
       t.text			:notes
       t.float			:distance
     end

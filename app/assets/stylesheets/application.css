@@ -16,8 +16,13 @@ td {
 	width: 150px;
 }
 
-.submit_button{
+.submit_button {
 	visibility: hidden;
+}
+
+.run-form {
+	display: block;
+	width: 100%;
 }
 .button_links {
 	background-color: #FF8000;
