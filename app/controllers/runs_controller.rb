@@ -17,6 +17,7 @@ class RunsController < ApplicationController
 		if @run.update(run_params(params))
 			render :json => Run.find_all_by_user_id(session[:user])
 		else
+			puts("Could not find the object to update")#error here
 		end
 	end
 

@@ -2,6 +2,14 @@
 
 var RunList = React.createClass({
 
+	// handleSubmit: function() {
+	// 	//Need to validate
+	// 	var formData = new FormData(this.refs.form.getDOMNode());
+	// 	this.props.onRunSubmit(formData, this.props.action);
+	// 	this.props.children.map(function(child) {
+	// 		child.setState({edit: false});
+	// 	})
+	// },
 
 	render: function() {
 		var obj = this;
@@ -10,7 +18,7 @@ var RunList = React.createClass({
 				return new Run({key: run.id, date: run.date, name: run.name, distance: run.distance, start_time: run.start_time,
 				 end_time: run.end_time, notes: run.notes, form: obj.props.form, onRunSubmit: obj.props.onRunSubmit, action: obj.props.action});
 			});
-			return React.DOM.tbody({className: "stored_runs"}, runRows)
+			return React.DOM.div({className: "stored_runs"}, runRows);
 		} else {
 			return <tr><td colSpan="6">No runs have been logged</td></tr>;
 		}

@@ -13,6 +13,21 @@
  */
 
 td {
+}
+
+div.run_box {
+	display: table;
+}
+div.row {
+	display: table-row;
+}
+
+form.row {
+	display: table-row;
+}
+
+span.cell {
+	display: table-cell;
 	width: 150px;
 }
 

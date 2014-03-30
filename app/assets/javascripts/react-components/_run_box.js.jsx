@@ -26,10 +26,8 @@ var RunBox = React.createClass({
 	render: function() {
 		return (
 			React.DOM.div({className: "run_box"},
-				React.DOM.table({className: "run_data"}, 
-					new RunForm({form: this.state.form, onRunSubmit: this.handleRunSubmit, action: '/runs/create'}),
-					new RunList({form: this.state.form, runs: this.state.runs, onRunSubmit: this.handleRunSubmit, action: '/runs/update'})
-				)
+				new RunForm({form: this.state.form, onRunSubmit: this.handleRunSubmit, action: '/runs/create'}),
+				new RunList({form: this.state.form, runs: this.state.runs, onRunSubmit: this.handleRunSubmit, action: '/runs/update'})
 			)
 		)
 	}

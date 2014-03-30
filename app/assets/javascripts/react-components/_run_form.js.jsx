@@ -28,38 +28,38 @@ var RunForm = React.createClass({
 	render: function() {
 		return React.DOM.tbody(null, 
 				<form ref="form" className="run-form" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
-				<tr>
-					<td>Date</td>
-					<td>Name</td>
-					<td>Distance</td>
-					<td>Start Time</td>
-					<td>End Time</td>
-					<td>Notes</td>
-				</tr>
-				<tr>
-					<td>
+				<div className="row">
+					<span className="cell">Date</span>
+					<span className="cell">Name</span>
+					<span className="cell">Distance</span>
+					<span className="cell">Start Time</span>
+					<span className="cell">End Time</span>
+					<span className="cell">Notes</span>
+				</div>
+				<div className="row">
+					<span className="cell">
 						<input type="date" ref="date" name="date" />
-					</td>
-					<td>
+					</span>
+					<span className="cell">
 						<input ref="name" name="name"/>
-					</td>
-					<td>
+					</span>
+					<span className="cell">
 						<input type="number" ref="distance" name="distance" step="any"/>
-					</td>
-					<td>
+					</span>
+					<span className="cell">
 						<input type="time" ref="start_time" name="start_time" />
-					</td>
-					<td>
+					</span>
+					<span className="cell">
 						<input type="time" ref="end_time" name="end_time" />
-					</td>
-					<td>
+					</span>
+					<span className="cell">
 						<input ref="notes" name="notes" />
-					</td>
-					<td>
+					</span>
+					<span className="cell">
 						<input type="hidden" name={this.props.form.csrf_param} value={this.props.form.csrf_token} />
 						<input type="submit" className="submit_button"/>
-					</td>
-				</tr>
+					</span>
+				</div>
 				</form>
 		);
 	}
