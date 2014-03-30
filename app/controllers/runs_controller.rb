@@ -4,7 +4,6 @@ class RunsController < ApplicationController
 	end
 
 	def create
-		'puts new run is being created'
 		@run = Run.new(run_params(params))
 		@run.user_id = session[:user]
 		if @run.save

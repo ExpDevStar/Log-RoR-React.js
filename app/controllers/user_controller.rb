@@ -20,7 +20,8 @@ class UserController < ApplicationController
   		:form => {
   			:csrf_param => request_forgery_protection_token,
   			:csrf_token => form_authenticity_token
-  		}
+  		},
+  		:edit => -1
   	}
   end
 
