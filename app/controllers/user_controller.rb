@@ -1,27 +1,42 @@
 class UserController < ApplicationController
+
+	WELCOME_PAGE = 0
+	REGISTRATION_PAGE = 1
+	LOGIN_PAGE = 2
+
   def new
 	@user = User.new
   end
 
   def create
-  	@user = User.new(user_params(params[:user]))
+  	@user = User.new(user_params(params))
   	if @user.save
 		flash[:notice] = "Registration complete!"
 		session[:user] = @user.id
-		redirect_to "/user/index/"
+		render :json => {:user_id => @user.id, :page => WELCOME_PAGE, :first_try => true}
   	else
-		render(:action => :new)
+  		#do some error thing
   	end
   end
 
   def index
-  	@runs = {
+  	if session.has_key?(:user)
+  		user_id = session[:user]
+  	else
+  		user_id = -1
+  	end
+  	@data = {
   		:runs => Run.find_all_by_user_id(session[:user]),
   		:form => {
   			:csrf_param => request_forgery_protection_token,
   			:csrf_token => form_authenticity_token
   		},
-  		:edit => -1
+  		:edit => -1,
+  		:login => {
+  			:user_id => user_id,
+  			:page => WELCOME_PAGE,
+  			:first_try => true
+  		}
   	}
   end
 
@@ -35,23 +50,17 @@ class UserController < ApplicationController
 	end
 
 	def post_login
-		user = User.find_by_login(params[:user][:login])
+		user = User.find_by_login(params[:login])
 		if user.nil?
-			@error = "Login not found."
-			@user = User.new
-			@user.first_name = params[:user][:first_name]
-			@user.last_name = params[:user][:last_name]
-			render(:action => :login)
+			render :json => {:user_id => -1, :page => LOGIN_PAGE, :first_try => false}
 		else
-			session[:user] = user.id
-			redirect_to "/runs/index/"
+			render :json => {:user_id => user.id, :page => WELCOME_PAGE, :first_try => true}
 		end
 	end
 
 	def logout
 		reset_session
-		flash[:notice] = "You have successfully logged out!"
-		redirect_to(:action => :login)
+		render :json => {:user_id => -1, :page => WELCOME_PAGE, :first_try => true}
 	end
 
 	private

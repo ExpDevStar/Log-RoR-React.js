@@ -6,8 +6,15 @@
   <%= javascript_include_tag "application" %>
 </head>
 <body>
-
+<div class="login_text">
+<% if session.has_key?(:user) %>
+	Hello <%= User.find(session[:user]).first_name %>! &nbsp&nbsp&nbsp
+	<%= link_to "Logout", {:controller => 'user', :action => 'logout'} %>
+<% else %>
+	<%= link_to "Login", {:controller => 'user', :action => 'login'} %>
+<% end %>
 <%= yield %>
+</div>
 
 </body>
 </html>

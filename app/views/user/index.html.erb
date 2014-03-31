@@ -1,3 +1,5 @@
+
+<%= react_component('RunBox', {:data => @data.to_json}, {:prerender => true}) %>
 <!-- <table>
 	<tr>
 		<td>Distance</td>
@@ -27,5 +29,3 @@
 		</td>
 	</tr>
 </table> -->
-
-<%= react_component('RunBox', {:runs => @runs.to_json}, {:prerender => true}) %>

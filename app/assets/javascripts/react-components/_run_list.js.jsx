@@ -1,16 +1,6 @@
 /** @jsx React.DOM */
 
 var RunList = React.createClass({
-
-	// handleSubmit: function() {
-	// 	//Need to validate
-	// 	var formData = new FormData(this.refs.form.getDOMNode());
-	// 	this.props.onRunSubmit(formData, this.props.action);
-	// 	this.props.children.map(function(child) {
-	// 		child.setState({edit: false});
-	// 	})
-	// },
-
 	render: function() {
 		var obj = this;
 		if (this.props.runs.length > 0) {	

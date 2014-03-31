@@ -1,4 +1,5 @@
 class RunsController < ApplicationController
+
 	def new
 		@run = Run.new
 	end
