@@ -4,17 +4,11 @@
   <title>RunningApp</title>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application" %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<div class="login_text">
-<% if session.has_key?(:user) %>
-	Hello <%= User.find(session[:user]).first_name %>! &nbsp&nbsp&nbsp
-	<%= link_to "Logout", {:controller => 'user', :action => 'logout'} %>
-<% else %>
-	<%= link_to "Login", {:controller => 'user', :action => 'login'} %>
-<% end %>
+
 <%= yield %>
-</div>
 
 </body>
 </html>

@@ -28,7 +28,7 @@ var RunForm = React.createClass({
 	render: function() {
 		return React.DOM.tbody(null, 
 				<form ref="form" className="run-form" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
-				<div className="row">
+				<div className="tr">
 					<span className="cell">Date</span>
 					<span className="cell">Name</span>
 					<span className="cell">Distance</span>
@@ -36,7 +36,7 @@ var RunForm = React.createClass({
 					<span className="cell">End Time</span>
 					<span className="cell">Notes</span>
 				</div>
-				<div className="row">
+				<div className="tr">
 					<span className="cell">
 						<input type="date" ref="date" name="date" />
 					</span>

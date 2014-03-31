@@ -31,7 +31,7 @@ var Run = React.createClass({
 	render: function() {
 		if (this.state.edit) {		
 			return (
-				<form ref="form" className="row" key={this.props.key} accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
+				<form ref="form" className="tr" key={this.props.key} accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
 					<span className="cell">
 						<input type="date" ref="date" name="date" defaultValue={ this.props.date } />
 					</span>
@@ -59,7 +59,7 @@ var Run = React.createClass({
 			);
 		} else {
 			return (
-				<div className="row" key={this.props.key} onClick={this.handleEdit}>
+				<div className="tr" key={this.props.key} onClick={this.handleEdit}>
 					<span className="cell" ref="date"> { this.props.date } </span>
 					<span className="cell" ref="name"> { this.props.name } </span>
 					<span className="cell" ref="distance"> { this.props.distance } </span>

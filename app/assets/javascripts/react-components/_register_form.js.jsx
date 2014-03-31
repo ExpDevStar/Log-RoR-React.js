@@ -13,30 +13,34 @@ var RegisterForm = React.createClass({
 	},
 
 	render: function() {
+		var classes = "center-content";
 		if (!this.props.firstTry) {
+			classes += " invalid_form";
 			return (
-				<div className="invalid_login">
+				<div className={classes}>
 					<p>Login taken. Try another.</p>
-					<form ref="form" className="row" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
-						<input ref="first_name" name="first_name" placeholder="First Name" />
-						<input ref="last_name" name="last_name" placeholder="Last Name" />
-						<input ref="login" name="login" placeholder="UserID" />
+					<form className="register-form" ref="form" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
+						<input className="input-box" ref="first_name" name="first_name" placeholder="First Name" />
+						<input className="input-box" ref="last_name" name="last_name" placeholder="Last Name" />
+						<input className="input-box" ref="login" name="login" placeholder="UserID" />
 						<input type="hidden" name={this.props.form.csrf_param} value={this.props.form.csrf_token} />
 						<input type="submit" className="submit_button"/>
-						<div className="registration_link"><p>First time here? Create an account here!</p></div>
-					</form>
+					</form><br/>
+						<div className="button_link" onClick={this.props.backToWelcome}><p>Back</p></div>
 				</div>
 				);
-		} else {		
+		} else {
 			return (
-				<form ref="form" className="row" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
-					<input ref="first_name" name="first_name" placeholder="First Name" />
-					<input ref="last_name" name="last_name" placeholder="Last Name" />
-					<input ref="login" name="login" placeholder="UserID" />
-					<input type="hidden" name={this.props.form.csrf_param} value={this.props.form.csrf_token} />
-					<input type="submit" className="submit_button"/>
-					<div className="registration_link"><p>First time here? Create an account here!</p></div>
-				</form>
+				<div className={classes}>
+					<form className="register-form" ref="form" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
+						<input className="input-box" ref="first_name" name="first_name" placeholder="First Name" /><br/>
+						<input className="input-box" ref="last_name" name="last_name" placeholder="Last Name" /><br/>
+						<input className="input-box" ref="login" name="login" placeholder="UserID" /><br/>
+						<input type="hidden" name={this.props.form.csrf_param} value={this.props.form.csrf_token} />
+						<input type="submit" className="submit_button"/>
+					</form><br/>
+					<div className="button_link" onClick={this.props.backToWelcome}><p>Back</p></div>
+				</div>
 			);
 		}
 	}

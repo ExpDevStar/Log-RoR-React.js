@@ -12,25 +12,32 @@
  *= require_tree .
  */
 
-body {
+body, html {
 	text-align: center;
+	height: 100%;
 }
 
 div.login_text {
 	text-align: left;
 }
 
-div.run_box {
+input.input-box {
+	height: 60px;
+	width: 200px;
+	margin: 5px;
+	font-size: 20px;
+}
+div.table {
 	display: table;
 	margin-left: auto;
 	margin-right: auto;
 }
-div.row {
+div.tr {
 	display: table-row;
 }
 
-form.row {
-	display: table-row;
+form.register-form {
+	width: auto;
 }
 
 span.cell {
@@ -39,8 +46,29 @@ span.cell {
 	width: 150px;
 }
 
+div.center-content {
+	display: inline-block;
+	vertical-align: middle;
+	width: 500px;
+}
 .submit_button {
 	visibility: hidden;
+	height: 0px;
+	width: 0px;
+}
+
+.center-block {
+	text-align: center;
+	margin: 20px;
+	height: 100%;
+}
+
+.center-block:before {
+	content: '';
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+	margin-right: -0.25em;
 }
 
 .run-form {
@@ -56,6 +84,7 @@ span.cell {
 	display: inline-block;
 	margin: 3px;
 	border: none;
+	width: 100px;
 	font-family: Tahoma, Arial, sans-serif;
 }
 

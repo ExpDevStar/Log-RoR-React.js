@@ -47,28 +47,43 @@ var RunBox = React.createClass({
 		this.setState({login: {user_id: -1, page: page_num, first_try: true}});
 	},
 
+	backToWelcome: function(event) {
+		this.setState({login: {user_id: -1, page: 0, first_try: true}});
+	},
+
 	render: function() {
 		this.WELCOME_PAGE = 0;
 		this.REGISTRATION_PAGE = 1;
 		this.LOGIN_PAGE = 2;
 		if (this.state.login.user_id != -1) {
 			return (
-				React.DOM.div({className: "run_box"},
+				React.DOM.div({className: "table container-fluid"},
 					new RunForm({form: this.state.form, onRunSubmit: this.handleRunSubmit, action: '/runs/create'}),
 					new RunList({form: this.state.form, runs: this.state.runs, onRunSubmit: this.handleRunSubmit, action: '/runs/update'})
 				)
 			);
 		} else if (this.state.login.page == this.WELCOME_PAGE) {
 
-			return new WelcomePage({onWelcomeClick: this.handleWelcome});
+			return (
+				React.DOM.div({className: "center-block container-fluid"},
+					new WelcomePage({onWelcomeClick: this.handleWelcome})
+				)
+			);
 
 		} else if (this.state.login.page == this.REGISTRATION_PAGE) {
 
-			return new RegisterForm({form: this.state.form, onRegister: this.handleLogin, firstTry: this.state.login.first_try, action: '/user/create'});
-
+			return (
+				React.DOM.div({className: "center-block container-fluid"},
+					new RegisterForm({form: this.state.form, onRegister: this.handleLogin, backToWelcome: this.backToWelcome, firstTry: this.state.login.first_try, action: '/user/create'})
+				)
+			);
 		} else if (this.state.login.page == this.LOGIN_PAGE) {
 
-			return new LoginForm({form: this.state.form, onLogin: this.handleLogin, firstTry: this.state.login.first_try, action: '/user/post_login'});
+			return (
+				React.DOM.div({className: "center-block container-fluid"},
+					new LoginForm({form: this.state.form, onLogin: this.handleLogin, backToWelcome: this.backToWelcome, firstTry: this.state.login.first_try, action: '/user/post_login'})
+				)
+			);
 		}
 		return React.DOM.div({className: "This is broken"});
 	}

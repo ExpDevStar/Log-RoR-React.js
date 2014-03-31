@@ -12,7 +12,7 @@ var WelcomePage = React.createClass({
 	},
 	render: function() {
 		return (
-			<div className="welcome_page">
+			<div className="center-content">
 				<div className="button_link" onClick={this.handleRegister}>
 					<p>Register</p>
 				</div>
