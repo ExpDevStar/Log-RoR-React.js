@@ -34,7 +34,7 @@ var RunBox = React.createClass({
 				return;
 			}
 			if (this.status == 200) {
-				obj.setState({login: JSON.parse(this.responseText)});
+				obj.setState(JSON.parse(this.responseText));
 				console.log("state has changed");
 				return;
 			} else {

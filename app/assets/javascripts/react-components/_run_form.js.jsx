@@ -26,8 +26,8 @@ var RunForm = React.createClass({
 	},
 
 	render: function() {
-		return React.DOM.tbody(null, 
-				<form ref="form" className="run-form" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
+		return	(
+			<form ref="form" className="form-inline" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
 				<div className="tr">
 					<span className="cell">Date</span>
 					<span className="cell">Name</span>
@@ -60,7 +60,7 @@ var RunForm = React.createClass({
 						<input type="submit" className="submit_button"/>
 					</span>
 				</div>
-				</form>
+			</form>
 		);
 	}
 });

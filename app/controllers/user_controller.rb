@@ -54,7 +54,15 @@ class UserController < ApplicationController
 		if user.nil?
 			render :json => {:user_id => -1, :page => LOGIN_PAGE, :first_try => false}
 		else
-			render :json => {:user_id => user.id, :page => WELCOME_PAGE, :first_try => true}
+			session[:user] = user.id
+			render :json => {
+				:runs => Run.find_all_by_user_id(user.id),
+				:login => {
+					:user_id => user.id,
+					:page => WELCOME_PAGE,
+					:first_try => true
+				}
+			}
 		end
 	end
 
