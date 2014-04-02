@@ -15,6 +15,12 @@
 body, html {
 	text-align: center;
 	height: 100%;
+	color: #858181;
+
+}
+
+.new-run {
+	padding: 20px;
 }
 
 div.login_text {
@@ -23,11 +29,11 @@ div.login_text {
 
 input.input-box {
 	height: 60px;
-	width: 200px;
+	width: 140px;
 	margin: 5px;
-	font-size: 20px;
+	font-size: 14px;
 }
-div.table {
+div.table-centered {
 	display: table;
 	margin-left: auto;
 	margin-right: auto;
@@ -36,14 +42,50 @@ div.tr {
 	display: table-row;
 }
 
+input.table-field {
+	width: 140px;
+	opacity: 1;
+}
+
+.nav-link {
+	font-weight: bold;
+	cursor: pointer;
+	margin-left: 20px;
+	margin-top: 10px;
+	font-size: 20px;
+}
+
+.nav-bar {
+	padding-top: 20px;
+}
+
+.hidden-field {
+	width: 0px;
+	height: 0px;
+	visibility: hidden;
+}
+
+.stored-runs {
+	background: rgba(255,255,255,0.75);
+	padding-left: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px; 
+	margin-right: 37px;
+}
+
+form.tr {
+	display: table-row;
+}
 form.register-form {
 	width: auto;
 }
-
+span.td {
+	display: table-cell;
+}
 span.cell {
 	display: table-cell;
 	text-align: left;
-	width: 150px;
+	width: 145px;
 }
 
 div.center-content {
@@ -51,16 +93,12 @@ div.center-content {
 	vertical-align: middle;
 	width: 500px;
 }
-.submit_button {
-	visibility: hidden;
-	height: 0px;
-	width: 0px;
-}
 
 .center-block {
 	text-align: center;
 	margin: 20px;
 	height: 100%;
+	background-color: inherit;
 }
 
 .center-block:before {
@@ -80,33 +118,35 @@ div.center-content {
 	background-color: #A4A4A4;
 	padding: 3px;
 	color: white;
-	text-decoration: none;
+	text-align: center;
+	vertical-align: middle;
 	display: inline-block;
 	margin: 3px;
-	border: none;
+	border-style: solid;
+	border-color: white;
+	border-width: 1px;
 	width: 100px;
 	font-family: Tahoma, Arial, sans-serif;
 }
 
-.photo_content {
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-	font-family: Tahoma, Arial, sans-serif;
-
+.object-enter {
+	opacity: 0.01;
+	transition: opacity .5s ease-in;
 }
 
-.comment {
-	margin-left: auto;
-	margin-right: auto;
-	text-align: left;
-	display: inline-block;
+.object-enter.object-enter-active {
+	opacity: 1;
 }
 
-.image_thumbnail {
-	height: 50px;
-	width: 50px;
+.object-leave {
+	opacity: 1;
+	transition: opacity .5s ease-in;
 }
+
+.object-leave.object-leave-active {
+	opacity: 0.01;
+}
+
 
 /*These styles were taken from the section 5 example*/
 #error_explanation {

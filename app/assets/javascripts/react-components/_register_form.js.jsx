@@ -19,14 +19,14 @@ var RegisterForm = React.createClass({
 			return (
 				<div className={classes}>
 					<p>Login taken. Try another.</p>
-					<form className="register-form" ref="form" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
+					<form className="register-form" id="register-form" ref="form" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
 						<input className="input-box" ref="first_name" name="first_name" placeholder="First Name" />
 						<input className="input-box" ref="last_name" name="last_name" placeholder="Last Name" />
 						<input className="input-box" ref="login" name="login" placeholder="UserID" />
 						<input type="hidden" name={this.props.form.csrf_param} value={this.props.form.csrf_token} />
-						<input type="submit" className="submit_button"/>
 					</form><br/>
-						<div className="button_link" onClick={this.props.backToWelcome}><p>Back</p></div>
+					<div className="button_link" onClick={this.props.backToWelcome}>Back</div>
+					<button type="submit" form="register-form" className="button_link">Register</button>
 				</div>
 				);
 		} else {
@@ -37,9 +37,9 @@ var RegisterForm = React.createClass({
 						<input className="input-box" ref="last_name" name="last_name" placeholder="Last Name" /><br/>
 						<input className="input-box" ref="login" name="login" placeholder="UserID" /><br/>
 						<input type="hidden" name={this.props.form.csrf_param} value={this.props.form.csrf_token} />
-						<input type="submit" className="submit_button"/>
 					</form><br/>
-					<div className="button_link" onClick={this.props.backToWelcome}><p>Back</p></div>
+					<div className="button_link" onClick={this.props.backToWelcome}>Back</div>
+					<button type="submit" form="register-form" className="button_link">Register</button>
 				</div>
 			);
 		}

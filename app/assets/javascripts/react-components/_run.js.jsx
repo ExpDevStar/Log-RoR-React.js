@@ -33,28 +33,26 @@ var Run = React.createClass({
 			return (
 				<form ref="form" className="tr" key={this.props.key} accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
 					<span className="cell">
-						<input type="date" ref="date" name="date" defaultValue={ this.props.date } />
+						<input type="date" className="table-field" ref="date" name="date" defaultValue={ this.props.date } />
 					</span>
 					<span className="cell">
-						<input ref="name" name="name" defaultValue={ this.props.name } />
+						<input ref="name" className="table-field" name="name" defaultValue={ this.props.name } />
 					</span>
 					<span className="cell"> 
-						<input type="number" ref="distance" name="distance" step="any" defaultValue={ this.props.distance } />
+						<input type="number" className="table-field" ref="distance" name="distance" step="any" defaultValue={ this.props.distance } />
 					</span>
 					<span className="cell"> 
-						<input type="time" ref="start_time" name="start_time" defaultValue={ this.props.start_time } />
+						<input type="time" className="table-field" ref="start_time" name="start_time" defaultValue={ this.props.start_time } />
 					</span>
 					<span className="cell">
-						<input type="time" ref="end_time" name="end_time" defaultValue={ this.props.end_time } />
+						<input type="time" className="table-field" ref="end_time" name="end_time" defaultValue={ this.props.end_time } />
 					</span>
 					<span className="cell">
-						<input ref="notes" name="notes" defaultValue={ this.props.notes } />
+						<input ref="notes" className="table-field" name="notes" defaultValue={ this.props.notes } />
 					</span>
-					<span className="cell">
-						<input type="hidden" name="id" value={this.props.key} />
-						<input type="hidden" name={this.props.form.csrf_param} value={this.props.form.csrf_token} />
-						<input type="submit" className="submit_button"/>
-					</span>
+					<input type="hidden" className="hidden-field" name="id" value={this.props.key} />
+					<input type="hidden" className="hidden-field" name={this.props.form.csrf_param} value={this.props.form.csrf_token} />
+					<input type="submit" className="hidden-field"/>
 				</form>
 			);
 		} else {

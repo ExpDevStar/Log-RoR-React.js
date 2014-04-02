@@ -17,23 +17,23 @@ var LoginForm = React.createClass({
 			return (
 				<div className={classes}>
 					<p>Invalid login. Try again.</p>
-					<form ref="form" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
+					<form ref="form" id="login-form" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
 						<input className="input-box" ref="login" name="login" placeholder="Login here" />
 						<input type="hidden" name={this.props.form.csrf_param} value={this.props.form.csrf_token} />
-						<input type="submit" className="submit_button"/>
 					</form><br/>
-					<div className="button_link" onClick={this.props.backToWelcome}><p>Back</p></div>
+					<div className="button_link" onClick={this.props.backToWelcome}>Back</div>
+					<button type="submit" form="login-form" className="button_link">Login</button>
 				</div>
 				);
 		} else {		
 			return (
 				<div className={classes}>
-				<form ref="form" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
+				<form ref="form" id="login-form" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
 					<input className="input-box" ref="login" name="login" placeholder="Login here" />
 					<input type="hidden" name={this.props.form.csrf_param} value={this.props.form.csrf_token} />
-					<input type="submit" className="submit_button"/>
 				</form><br/>
-				<div className="button_link" onClick={this.props.backToWelcome}><p>Back</p></div>
+				<div className="button_link" onClick={this.props.backToWelcome}>Back</div>
+				<button type="submit" form="login-form" className="button_link">Login</button>
 				</div>
 			);
 		}

@@ -8,9 +8,9 @@ var RunList = React.createClass({
 				return new Run({key: run.id, date: run.date, name: run.name, distance: run.distance, start_time: run.start_time,
 				 end_time: run.end_time, notes: run.notes, form: obj.props.form, onRunSubmit: obj.props.onRunSubmit, action: obj.props.action});
 			});
-			return React.DOM.div({className: "stored_runs"}, runRows);
+			return React.DOM.div({className: "stored-runs"}, runRows);
 		} else {
-			return <tr><td colSpan="6">No runs have been logged</td></tr>;
+			return <div className="container">No runs have been logged</div>;
 		}
 	}
 });

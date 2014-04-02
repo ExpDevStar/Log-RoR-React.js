@@ -27,38 +27,36 @@ var RunForm = React.createClass({
 
 	render: function() {
 		return	(
-			<form ref="form" className="form-inline" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
+			<form ref="form" className="new-run form-inline" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
 				<div className="tr">
-					<span className="cell">Date</span>
-					<span className="cell">Name</span>
-					<span className="cell">Distance</span>
-					<span className="cell">Start Time</span>
-					<span className="cell">End Time</span>
-					<span className="cell">Notes</span>
+					<span className="cell"><h4>Date</h4></span>
+					<span className="cell"><h4>Name</h4></span>
+					<span className="cell"><h4>Distance</h4></span>
+					<span className="cell"><h4>Start Time</h4></span>
+					<span className="cell"><h4>End Time</h4></span>
+					<span className="cell"><h4>Notes</h4></span>
 				</div>
 				<div className="tr">
 					<span className="cell">
-						<input type="date" ref="date" name="date" />
+						<input className="table-field" type="date" ref="date" name="date" />
 					</span>
 					<span className="cell">
-						<input ref="name" name="name"/>
+						<input className="table-field" ref="name" name="name"/>
 					</span>
 					<span className="cell">
-						<input type="number" ref="distance" name="distance" step="any"/>
+						<input className="table-field" type="number" ref="distance" name="distance" step="any"/>
 					</span>
 					<span className="cell">
-						<input type="time" ref="start_time" name="start_time" />
+						<input className="table-field" type="time" ref="start_time" name="start_time" />
 					</span>
 					<span className="cell">
-						<input type="time" ref="end_time" name="end_time" />
+						<input className="table-field" type="time" ref="end_time" name="end_time" />
 					</span>
 					<span className="cell">
-						<input ref="notes" name="notes" />
+						<input className="table-field" ref="notes" name="notes" />
 					</span>
-					<span className="cell">
-						<input type="hidden" name={this.props.form.csrf_param} value={this.props.form.csrf_token} />
-						<input type="submit" className="submit_button"/>
-					</span>
+					<input type="hidden" name={this.props.form.csrf_param} value={this.props.form.csrf_token} />
+					<input type="submit" className="hidden-field"/>
 				</div>
 			</form>
 		);
