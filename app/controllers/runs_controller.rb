@@ -10,6 +10,7 @@ class RunsController < ApplicationController
 		if @run.save
 			render :json => Run.find_all_by_user_id(session[:user])
 		else
+			#handle error
 		end
 	end
 
@@ -24,7 +25,18 @@ class RunsController < ApplicationController
 
 
 	def filter
-		@runs = Run.find_all_by_user_id(params[:id])
+		if (params[:min_distance].empty?)
+			min_distance = 0
+		else
+			min_distance = params[:min_distance].to_f
+		end
+		if (params[:max_distance].empty?)
+			max_distance = nil
+		else
+			max_distance = params[:max_distance].to_f
+		end
+		render :json => Run.filter(session[:user], params[:text], params[:start_date], params[:end_date],
+		 min_distance, max_distance, params[:min_time], params[:max_time])
 	end
 	private
 

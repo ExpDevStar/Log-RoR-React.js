@@ -19,7 +19,7 @@ body, html {
 
 }
 
-.new-run {
+.run-form {
 	padding: 20px;
 }
 
@@ -109,10 +109,7 @@ div.center-content {
 	margin-right: -0.25em;
 }
 
-.run-form {
-	display: block;
-	width: 100%;
-}
+
 .button_link {
 	cursor: pointer;
 	background-color: #A4A4A4;

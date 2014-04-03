@@ -2,88 +2,89 @@
 
 ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
+var createXhrRequest = function(funct, request_type, action, formData) {
+	document.body.style.cursor = "wait"; /*changes cursor to spinner*/
+	var xhr = new XMLHttpRequest();
+	xhr.open(request_type, action);
+	xhr.onreadystatechange = function() {
+		if (this.readyState != 4) {
+			return;
+		}
+		if (this.status == 200) {
+			funct(this.responseText);
+			document.body.style.cursor = ""; /*changes back after request is done*/
+			console.log("state has changed");
+			return;
+		} else {
+			document.body.style.cursor = "";
+			console.error("AHH xhr failed");
+		}
+	}
+	if (formData != null) {
+		xhr.send(formData);
+	} else {
+		xhr.send();
+	}
+}
+
 var RunBox = React.createClass({
 
 	getInitialState: function() {
 		return JSON.parse(this.props.data);
 	},
 	handleRunSubmit: function(formData, action) {
-		var xhr = new XMLHttpRequest();
-		xhr.open("POST", action);
 		var obj = this;
-		xhr.onreadystatechange = function() {
-			if (this.readyState != 4) {
-				return;
-			}
-			if (this.status == 200) {
-				obj.setState({runs: JSON.parse(this.responseText)});
-				console.log("state has changed");
-				return;
-			} else {
-				console.error("AHH xhr failed");
-			}
+		var funct = function(responseText) {
+			obj.setState({runs: JSON.parse(responseText)});
 		}
-		xhr.send(formData);
+		createXhrRequest(funct, "POST", action, formData);
 	},
 
 	handleLogin: function(formData, action) {
-		var xhr = new XMLHttpRequest();
-		xhr.open("POST", action);
 		var obj = this;
-		xhr.onreadystatechange = function() {
-			if (this.readyState != 4) {
-				return;
-			}
-			if (this.status == 200) {
-				obj.setState(JSON.parse(this.responseText));
-				console.log("state has changed");
-				return;
-			} else {
-				console.error("AHH xhr failed");
-			}
+		var funct = function(responseText) {
+			obj.setState(JSON.parse(responseText));
 		}
-		xhr.send(formData);
+		createXhrRequest(funct, "POST", action, formData);
+		if(this.state.firstTry) return true;
+		return false; /*Invalid login or register*/
 	},
 
 	handleLogout: function(action) {
-		var xhr = new XMLHttpRequest();
-		xhr.open("GET", action);
 		var obj = this;
-		console.log("eneterd handleLogout")
-		xhr.onreadystatechange = function() {
-			if (this.readyState != 4) {
-				return;
-			}
-			if (this.status == 200) {
-				obj.setState({login: JSON.parse(this.responseText)});
-				console.log("state has changed");
-				return;
-			} else {
-				console.error("AHH xhr failed");
-			}
-
+		var funct = function(responseText) {
+			obj.setState(JSON.parse(responseText));
 		}
-		xhr.send();
+		createXhrRequest(funct, "GET", action, null);
 	},
 
-	handleWelcome: function(page_num) {
-		this.setState({login: {user_id: -1, page: page_num, first_try: true}});
-	},
-
-	backToWelcome: function(event) {
-		this.setState({login: {user_id: -1, page: 0, first_try: true}});
+	handlePageChange: function(page_num) {
+		this.setState({page: page_num});
 	},
 
 	render: function() {
+		/*Codes for user not logged in*/
 		this.WELCOME_PAGE = 0;
 		this.REGISTRATION_PAGE = 1;
 		this.LOGIN_PAGE = 2;
-		if (this.state.login.user_id != -1) {
+		/*Codes for user logged in*/
+		this.HOME_PAGE = 0;
+		this.SEARCH_PAGE = 1;
+		if (this.state.user_id != -1) {
+			var form;
+			if (this.state.page == this.HOME_PAGE) {
+				form = new RunForm({form: this.state.form, onRunSubmit: this.handleRunSubmit, action: '/runs/create'});
+			} else if (this.state.page == this.SEARCH_PAGE) {
+				form = new SearchForm({form: this.state.form, onRunFilter: this.handleRunSubmit, action: '/runs/filter'});
+			} else {
+				console.error("Page code: " + this.state.page + " is unknown");
+			}
 			return (
 				React.DOM.div(null,
-					new NavBar({onLogout: this.handleLogout, action: '/user/logout'}),
+					new NavBar({onPageChange: this.handlePageChange, onLogout: this.handleLogout, logout_action: '/user/logout'}),
 					React.DOM.div({className: "table-centered"},
-						new RunForm({form: this.state.form, onRunSubmit: this.handleRunSubmit, action: '/runs/create'}),
+						form),
+					React.DOM.div({className: "table-centered"},
 						<ReactCSSTransitionGroup transitionName="object"> {
 							new RunList({form: this.state.form, runs: this.state.runs, onRunSubmit: this.handleRunSubmit, action: '/runs/update'})
 						}
@@ -91,31 +92,31 @@ var RunBox = React.createClass({
 					)
 				)
 			);
-		} else if (this.state.login.page == this.WELCOME_PAGE) {
+		} else if (this.state.page == this.WELCOME_PAGE) {
 
 			return (
 				<ReactCSSTransitionGroup transitionName="object"> {
 					React.DOM.div({className: "center-block"},
-						new WelcomePage({onWelcomeClick: this.handleWelcome})
+						new WelcomePage({onWelcomeClick: this.handlePageChange})
 					)
 				} </ReactCSSTransitionGroup>
 			);
 
-		} else if (this.state.login.page == this.REGISTRATION_PAGE) {
+		} else if (this.state.page == this.REGISTRATION_PAGE) {
 
 			return (
 				<ReactCSSTransitionGroup transitionName="object"> {
 					React.DOM.div({className: "center-block"},
-						new RegisterForm({form: this.state.form, onRegister: this.handleLogin, backToWelcome: this.backToWelcome, firstTry: this.state.login.first_try, action: '/user/create'})
+						new RegisterForm({form: this.state.form, onRegister: this.handleLogin, pageChange: this.handlePageChange, action: '/user/create'})
 					)
 				} </ReactCSSTransitionGroup>
 			);
-		} else if (this.state.login.page == this.LOGIN_PAGE) {
+		} else if (this.state.page == this.LOGIN_PAGE) {
 
 			return (
 				<ReactCSSTransitionGroup transitionName="object"> {
 					React.DOM.div({className: "center-block"},
-						new LoginForm({form: this.state.form, onLogin: this.handleLogin, backToWelcome: this.backToWelcome, firstTry: this.state.login.first_try, action: '/user/post_login'})
+						new LoginForm({form: this.state.form, onLogin: this.handleLogin, pageChange: this.handlePageChange, action: '/user/login'})
 					)
 				} </ReactCSSTransitionGroup>
 			);

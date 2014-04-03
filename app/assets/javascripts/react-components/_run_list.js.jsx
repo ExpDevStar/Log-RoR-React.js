@@ -10,7 +10,7 @@ var RunList = React.createClass({
 			});
 			return React.DOM.div({className: "stored-runs"}, runRows);
 		} else {
-			return <div className="container">No runs have been logged</div>;
+			return <div className="tr"><div className="td"><h4>No runs found. Go run some more!</h4></div></div>;
 		}
 	}
 });

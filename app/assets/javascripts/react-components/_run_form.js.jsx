@@ -4,10 +4,10 @@ var RunForm = React.createClass({
 	handleSubmit: function (event) {
 		event.preventDefault();
 		var name = this.refs.name.getDOMNode().value.trim();
-		var distance = this.refs.distance.getDOMNode().value;
+		var distance = this.refs.distance.getDOMNode().value.trim();
 		var date = this.refs.date.getDOMNode().value.trim();
-		var start_time = this.refs.start_time.getDOMNode().value;
-		var end_time = this.refs.end_time.getDOMNode().value;
+		var start_time = this.refs.start_time.getDOMNode().value.trim();
+		var end_time = this.refs.end_time.getDOMNode().value.trim();
 		var notes = this.refs.notes.getDOMNode().value.trim();
 		//validation
 		if (!name || !distance || !date || !start_time || !end_time) return false;
@@ -27,7 +27,7 @@ var RunForm = React.createClass({
 
 	render: function() {
 		return	(
-			<form ref="form" className="new-run form-inline" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
+			<form ref="form" className="run-form form-inline" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
 				<div className="tr">
 					<span className="cell"><h4>Date</h4></span>
 					<span className="cell"><h4>Name</h4></span>
