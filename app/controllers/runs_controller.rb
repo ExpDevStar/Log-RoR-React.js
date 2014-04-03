@@ -26,7 +26,7 @@ class RunsController < ApplicationController
 
 	def filter
 		if (params[:min_distance].empty?)
-			min_distance = 0
+			min_distance = nil
 		else
 			min_distance = params[:min_distance].to_f
 		end
@@ -35,8 +35,18 @@ class RunsController < ApplicationController
 		else
 			max_distance = params[:max_distance].to_f
 		end
+		if (params[:min_time].empty?)
+			min_time = nil
+		else
+			min_time = params[:min_time].to_f
+		end
+		if (params[:max_time].empty?)
+			max_time = nil
+		else
+			max_time = params[:max_time].to_f
+		end
 		render :json => Run.filter(session[:user], params[:text], params[:start_date], params[:end_date],
-		 min_distance, max_distance, params[:min_time], params[:max_time])
+		 min_distance, max_distance, min_time, max_time)
 	end
 	private
 

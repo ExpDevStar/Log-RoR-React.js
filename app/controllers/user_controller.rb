@@ -26,6 +26,7 @@ class UserController < ApplicationController
   def index
   	if session.has_key?(:user)
   		user_id = session[:user]
+  		puts User.find(user_id).first_name
   	else
   		user_id = -1
   	end

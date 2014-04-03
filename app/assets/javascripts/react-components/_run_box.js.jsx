@@ -73,9 +73,11 @@ var RunBox = React.createClass({
 		if (this.state.user_id != -1) {
 			var form;
 			if (this.state.page == this.HOME_PAGE) {
-				form = new RunForm({form: this.state.form, onRunSubmit: this.handleRunSubmit, action: '/runs/create'});
+				run_form = new RunForm({form: this.state.form, onRunSubmit: this.handleRunSubmit, action: '/runs/create'});
+				search_form = <div className="hidden"></div>
 			} else if (this.state.page == this.SEARCH_PAGE) {
-				form = new SearchForm({form: this.state.form, onRunFilter: this.handleRunSubmit, action: '/runs/filter'});
+				run_form = <div className="hidden"></div>
+				search_form = new SearchForm({form: this.state.form, onRunFilter: this.handleRunSubmit, action: '/runs/filter'});
 			} else {
 				console.error("Page code: " + this.state.page + " is unknown");
 			}
@@ -83,11 +85,24 @@ var RunBox = React.createClass({
 				React.DOM.div(null,
 					new NavBar({onPageChange: this.handlePageChange, onLogout: this.handleLogout, logout_action: '/user/logout'}),
 					React.DOM.div({className: "table-centered"},
-						form),
+						search_form),
 					React.DOM.div({className: "table-centered"},
-						<ReactCSSTransitionGroup transitionName="object"> {
-							new RunList({form: this.state.form, runs: this.state.runs, onRunSubmit: this.handleRunSubmit, action: '/runs/update'})
-						}
+
+						<ReactCSSTransitionGroup transitionName="object"> 
+							<div className="col-title tr">
+								<span className="cell"><h4>Date</h4></span>
+								<span className="cell"><h4>Name</h4></span>
+								<span className="cell"><h4>Distance</h4></span>
+								<span className="cell"><h4>Start Time</h4></span>
+								<span className="cell"><h4>End Time</h4></span>
+								<span className="cell"><h4>Notes</h4></span>
+							</div>
+							<div className="run-list">
+								{run_form}
+								{
+								new RunList({form: this.state.form, runs: this.state.runs, onRunSubmit: this.handleRunSubmit, action: '/runs/update'})
+								}
+							</div>
 						</ReactCSSTransitionGroup>
 					)
 				)

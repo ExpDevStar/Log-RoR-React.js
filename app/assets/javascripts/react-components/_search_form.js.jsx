@@ -11,11 +11,11 @@ var SearchForm = React.createClass({
 
 	render: function() {
 		return	(
-			<form ref="form" className="run-form form-inline" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
+			<form ref="form" className="search-form form-inline" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
 				<div className="tr">
 					<span className="cell"><h4>Date Start</h4></span>
 					<span className="cell"><h4>Date End</h4></span>
-					<span className="cell"><h4>Text</h4></span>
+					<span className="cell"><h4>Search Text</h4></span>
 					<span className="cell"><h4>Distance Min</h4></span>
 					<span className="cell"><h4>Distance Max</h4></span>
 					<span className="cell"><h4>Time Min</h4></span>

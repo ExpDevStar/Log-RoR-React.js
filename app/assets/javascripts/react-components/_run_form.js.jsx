@@ -8,7 +8,6 @@ var RunForm = React.createClass({
 		var date = this.refs.date.getDOMNode().value.trim();
 		var start_time = this.refs.start_time.getDOMNode().value.trim();
 		var end_time = this.refs.end_time.getDOMNode().value.trim();
-		var notes = this.refs.notes.getDOMNode().value.trim();
 		//validation
 		if (!name || !distance || !date || !start_time || !end_time) return false;
 		//submit form data
@@ -27,15 +26,7 @@ var RunForm = React.createClass({
 
 	render: function() {
 		return	(
-			<form ref="form" className="run-form form-inline" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
-				<div className="tr">
-					<span className="cell"><h4>Date</h4></span>
-					<span className="cell"><h4>Name</h4></span>
-					<span className="cell"><h4>Distance</h4></span>
-					<span className="cell"><h4>Start Time</h4></span>
-					<span className="cell"><h4>End Time</h4></span>
-					<span className="cell"><h4>Notes</h4></span>
-				</div>
+			<form ref="form" className="form-inline" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
 				<div className="tr">
 					<span className="cell">
 						<input className="table-field" type="date" ref="date" name="date" />

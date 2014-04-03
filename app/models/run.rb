@@ -1,6 +1,6 @@
 class Run < ActiveRecord::Base
 	belongs_to :user
-	validates_presence_of :name, :date, :distance, :start_time, :end_time, :notes
+	validates_presence_of :name, :date, :distance, :start_time, :end_time
 
 	def self.filter(user_id, substr, start_date, end_date, distance_min, distance_max, min_time_length, max_time_length)
 		user_runs = Run.find_all_by_user_id(user_id)
