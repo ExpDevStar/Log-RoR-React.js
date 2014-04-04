@@ -26,14 +26,15 @@ class Run < ActiveRecord::Base
 					next
 				end
 			end
-			run_time = Time.parse(run.end_time) - Time.parse(run.start_time); #time in hours
+			run_time = (Time.parse(run.end_time) - Time.parse(run.start_time))/3600; #time in hours
+			puts run_time
 			if !min_time_length.nil?
-				if run_time < min_time_length.to_f
+				if run_time < min_time_length
 					next
 				end
 			end
 			if !max_time_length.nil?
-				if run_time > max_time_length.to_f
+				if run_time > max_time_length
 					next
 				end
 			end

@@ -18,8 +18,8 @@ var SearchForm = React.createClass({
 					<span className="cell"><h4>Search Text</h4></span>
 					<span className="cell"><h4>Distance Min</h4></span>
 					<span className="cell"><h4>Distance Max</h4></span>
-					<span className="cell"><h4>Time Min</h4></span>
-					<span className="cell"><h4>Time Max</h4></span>
+					<span className="cell"><h4>Time Min (hrs)</h4></span>
+					<span className="cell"><h4>Time Max (hrs)</h4></span>
 				</div>
 				<div className="tr">
 					<span className="cell">
@@ -38,10 +38,10 @@ var SearchForm = React.createClass({
 						<input className="table-field" onChange={this.handleSubmit} type="number" name="max_distance" step="any"/>
 					</span>
 					<span className="cell">
-						<input className="table-field" onChange={this.handleSubmit} type="number" name="min_time" />
+						<input className="table-field" onChange={this.handleSubmit} type="number" name="min_time" step="any"/>
 					</span>
 					<span className="cell">
-						<input className="table-field" onChange={this.handleSubmit} type="number" name="max_time" />
+						<input className="table-field" onChange={this.handleSubmit} type="number" name="max_time" step="any"/>
 					</span>
 					<input type="hidden" name={this.props.form.csrf_param} value={this.props.form.csrf_token} />
 					<input type="submit" className="hidden-field"/>
