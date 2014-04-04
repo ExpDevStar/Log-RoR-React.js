@@ -19,6 +19,11 @@ class RunsController < ApplicationController
 		end
 	end
 
+	def delete
+		Run.destroy(params[:id])
+		render :json => Run.find_all_by_user_id(session[:user])
+	end
+
 
 	def filter
 		if (params[:min_distance].empty?)

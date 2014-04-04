@@ -101,7 +101,8 @@ var RunBox = React.createClass({
 							<div className="run-list">
 								{run_form}
 								{
-								new RunList({user: this.state.user, form: this.state.form, runs: this.state.runs, onRunSubmit: this.handleRunSubmit, action: '/runs/update'})
+								new RunList({user: this.state.user, form: this.state.form, runs: this.state.runs, onRunSubmit: this.handleRunSubmit,
+									editAction: '/runs/update', deleteAction: '/runs/delete'})
 								}
 							</div>
 						</ReactCSSTransitionGroup>

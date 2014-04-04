@@ -6,7 +6,8 @@ var RunList = React.createClass({
 		if (this.props.runs.length > 0) {	
 			var runRows = this.props.runs.map(function(run) {
 				return new Run({key: run.id, date: run.date, name: run.name, distance: run.distance, start_time: run.start_time,
-				 end_time: run.end_time, notes: run.notes, form: obj.props.form, onRunSubmit: obj.props.onRunSubmit, action: obj.props.action});
+				 end_time: run.end_time, notes: run.notes, form: obj.props.form, onRunSubmit: obj.props.onRunSubmit, editAction: obj.props.editAction,
+				deleteAction: obj.props.deleteAction});
 			});
 			return React.DOM.div({className: "stored-runs"}, runRows);
 		} else {

@@ -12,7 +12,6 @@ var Run = React.createClass({
 
 	handleSubmit: function() {
 		event.preventDefault();
-		console.log("editting run!");
 		var name = this.refs.name.getDOMNode().value.trim();
 		var distance = this.refs.distance.getDOMNode().value;
 		var date = this.refs.date.getDOMNode().value.trim();
@@ -22,9 +21,25 @@ var Run = React.createClass({
 		//validation
 		if (!name || !distance || !date || !start_time || !end_time) return false;
 		var formData = new FormData(this.refs.form.getDOMNode());
-		this.props.onRunSubmit(formData, this.props.action);
+		this.props.onRunSubmit(formData, this.props.editAction);
 		this.setState({edit: false})
 
+	},
+
+	handleMouseEnter: function(event) {
+		this.refs.delete_button.getDOMNode().innerHTML = 'x';
+	},
+
+	handleMouseLeave: function(event) {
+		this.refs.delete_button.getDOMNode().innerHTML = '';
+	},
+
+	handleDelete: function(event) {
+		event.preventDefault();
+		var formData = new FormData();
+		formData.append('id', this.props.key);
+		formData.append(this.props.form.csrf_param, this.props.form.csrf_token);
+		this.props.onRunSubmit(formData, this.props.deleteAction);
 	},
 
 
@@ -57,13 +72,16 @@ var Run = React.createClass({
 			);
 		} else {
 			return (
-				<div className="tr" key={this.props.key} onClick={this.handleEdit}>
-					<span className="cell" ref="date"> { this.props.date } </span>
-					<span className="cell" ref="name"> { this.props.name } </span>
-					<span className="cell" ref="distance"> { this.props.distance } </span>
-					<span className="cell" ref="start_time"> { this.props.start_time } </span>
-					<span className="cell" ref="end_time"> { this.props.end_time } </span>
-					<span className="cell" ref="notes"> { this.props.notes } </span>
+				<div>
+					<div className="tr" key={this.props.key} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} >
+						<span className="cell" onClick={this.handleEdit} ref="date"> { this.props.date } </span>
+						<span className="cell" onClick={this.handleEdit} ref="name"> { this.props.name } </span>
+						<span className="cell" onClick={this.handleEdit} ref="distance"> { this.props.distance } </span>
+						<span className="cell" onClick={this.handleEdit} ref="start_time"> { this.props.start_time } </span>
+						<span className="cell" onClick={this.handleEdit} ref="end_time"> { this.props.end_time } </span>
+						<span className="cell" onClick={this.handleEdit} ref="notes"> { this.props.notes } </span>
+						<div ref="delete_button" className="delete-button" onClick={this.handleDelete}></div>
+					</div>
 				</div>
 			);
 		}
