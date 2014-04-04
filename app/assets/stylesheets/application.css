@@ -37,7 +37,12 @@ div.table-centered {
 .tr {
 	display: table-row;
 }
-
+p.notice {
+	color: #89AEB9;
+	padding-top: 20px;
+	text-shadow: 0 1px 0;
+	font-size: 12px;
+}
 input.table-field {
 	width: 140px;
 	opacity: 1;

@@ -11,8 +11,8 @@ var RunList = React.createClass({
 				 end_time: run.end_time, notes: run.notes, form: obj.props.form, onRunSubmit: obj.props.onRunSubmit, editAction: obj.props.editAction,
 				deleteAction: obj.props.deleteAction});
 			});
-
-			return React.DOM.div({className: "stored-runs"}, runRows);
+			var notice = <p className="notice">Double click to edit a run</p>
+			return React.DOM.div({className: "stored-runs"}, runRows, notice);
 		} else {
 			return <div className="tr no-runs"><h4>No runs found. Go run some more!</h4></div>;
 		}

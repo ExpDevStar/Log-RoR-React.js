@@ -83,11 +83,11 @@ var Run = React.createClass({
 				<div>
 					<div className="tr run" key={this.props.key} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} >
 						<span className="cell first-col" onClick={this.handleEdit} ref="date"> { this.props.date } </span>
-						<span className="cell" onClick={this.handleEdit} ref="name"> { this.props.name } </span>
-						<span className="cell" onClick={this.handleEdit} ref="distance"> { this.props.distance } </span>
-						<span className="cell" onClick={this.handleEdit} ref="start_time"> { this.props.start_time } </span>
-						<span className="cell" onClick={this.handleEdit} ref="end_time"> { this.props.end_time } </span>
-						<span className="cell" onClick={this.handleEdit} ref="notes"> { this.props.notes } </span>
+						<span className="cell" onDoubleClick={this.handleEdit} ref="name"> { this.props.name } </span>
+						<span className="cell" onDoubleClick={this.handleEdit} ref="distance"> { this.props.distance } </span>
+						<span className="cell" onDoubleClick={this.handleEdit} ref="start_time"> { this.props.start_time } </span>
+						<span className="cell" onDoubleClick={this.handleEdit} ref="end_time"> { this.props.end_time } </span>
+						<span className="cell" onDoubleClick={this.handleEdit} ref="notes"> { this.props.notes } </span>
 						<div ref="delete_button" className="delete-button" onClick={this.handleDelete}></div>
 					</div>
 				</div>
