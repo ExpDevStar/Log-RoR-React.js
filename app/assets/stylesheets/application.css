@@ -126,7 +126,6 @@ div.center-content {
 	border-color: white;
 	border-width: 1px;
 	width: 100px;
-	font-family: Tahoma, Arial, sans-serif;
 }
 
 .object-enter {
@@ -145,29 +144,4 @@ div.center-content {
 
 .object-leave.object-leave-active {
 	opacity: 0.01;
-}
-
-
-/*These styles were taken from the section 5 example*/
-#error_explanation {
-  background-color: #ffdddd;
-  border: 2px solid #ff5555;
-  margin: 20px 0;
-  padding: 10px;
-}
-
-#notices {
-  background-color: #ddddff;
-  border: 2px solid #9999ff;
-  padding: 10px;
-}
-
-.field_with_errors {
-  color: #ff5555;
-  font-weight: bold;
-}
-
-.field_with_errors input {
-  color: #ff5555;
-  border: 2px solid #ff5555;
 }
