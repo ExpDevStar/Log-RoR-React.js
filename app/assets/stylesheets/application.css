@@ -22,8 +22,10 @@ div.login_text {
 }
 
 input.input-box {
-	width: 140px;
-	font-size: 14px;
+	width: 200px;
+	font-size: 20px;
+	height: 50px;
+	line-height: 45px;
 	margin: 5px;
 }
 
@@ -32,7 +34,7 @@ div.table-centered {
 	margin-left: auto;
 	margin-right: auto;
 }
-div.tr {
+.tr {
 	display: table-row;
 }
 
@@ -41,6 +43,10 @@ input.table-field {
 	opacity: 1;
 }
 
+.welcome-text{
+	font-size: 100px;
+	padding-bottom: 50px;
+}
 .nav-link {
 	font-weight: bold;
 	cursor: pointer;
@@ -60,23 +66,28 @@ input.table-field {
 }
 
 .run-list {
-	background: rgba(255,255,255,0.75);
-	padding-top: 20px;
+	padding-top: 10px;
 	padding-left: 20px;
 	padding-bottom: 20px; 
 }
-.col-title span.cell {
-
+.col-title .cell {
 	padding-left: 5px;
+	text-align: center;
 }
 
-.search-form {
+form.run .cell {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.run .cell {
+	background: rgba(255,255,255,0.75);
+}
+.no-runs {
 	/*padding-bottom: 20px;*/
 }
 
-form.tr {
-	display: table-row;
-}
+
 form.register-form {
 	width: auto;
 }
@@ -93,6 +104,11 @@ div.center-content {
 	display: inline-block;
 	vertical-align: middle;
 	width: 500px;
+}
+
+p.error-message {
+	color: #B80000;
+	font-weight: bold;
 }
 
 .center-block {
@@ -114,7 +130,6 @@ div.center-content {
 .button_link {
 	cursor: pointer;
 	background-color: #A4A4A4;
-	padding: 3px;
 	color: white;
 	text-align: center;
 	vertical-align: middle;
@@ -126,6 +141,22 @@ div.center-content {
 	width: 100px;
 }
 
+
+.welcome-button {
+	height: 40px;
+	line-height: 40px;
+	font-size: 20px;
+}
+
+.delete-button {
+	cursor: pointer;
+	padding-left: 10px;
+	font-weight: bold;
+}
+
+.run .first-col {
+	padding-left: 8px;
+}
 .object-enter {
 	opacity: 0.01;
 	transition: opacity .5s ease-in;

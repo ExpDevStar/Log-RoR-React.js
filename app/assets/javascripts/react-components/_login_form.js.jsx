@@ -9,7 +9,10 @@ var LoginForm = React.createClass({
 	handleSubmit: function(event) {
 		event.preventDefault();
 		var login = this.refs.login.getDOMNode().value
-		if (!login) return false;
+		if (!login) {
+			this.setState({error_message: "Please enter a login name"});
+			return false;
+		}
 		var formData = new FormData(this.refs.form.getDOMNode());
 		if(!this.props.onLogin(formData, this.props.action)) {/*Invalid login*/
 			this.setState({error_message: "Invalid login. Try again"});

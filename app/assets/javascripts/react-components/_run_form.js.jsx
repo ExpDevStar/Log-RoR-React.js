@@ -26,9 +26,9 @@ var RunForm = React.createClass({
 
 	render: function() {
 		return	(
-			<form ref="form" className="form-inline" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
+			<form ref="form" className="form-inline run" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
 				<div className="tr">
-					<span className="cell">
+					<span className="cell first-col">
 						<input className="table-field" type="date" ref="date" name="date" />
 					</span>
 					<span className="cell">

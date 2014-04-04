@@ -13,11 +13,10 @@ var createXhrRequest = function(funct, request_type, action, formData) {
 		if (this.status == 200) {
 			funct(this.responseText);
 			document.body.style.cursor = ""; /*changes back after request is done*/
-			console.log("state has changed");
 			return;
 		} else {
 			document.body.style.cursor = "";
-			console.error("AHH xhr failed");
+			console.error("Request failed.");
 		}
 	}
 	if (formData != null) {
@@ -69,7 +68,6 @@ var RunBox = React.createClass({
 		/*Codes for user logged in*/
 		this.HOME_PAGE = 0;
 		this.SEARCH_PAGE = 1;
-		console.log(this.state.user);
 		if (this.state.user != null) {
 			var run_form;
 			var search_form;
