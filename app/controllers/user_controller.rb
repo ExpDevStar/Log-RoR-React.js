@@ -6,6 +6,9 @@ class UserController < ApplicationController
 	#for user logged in
 	HOME_PAGE = 0
 	SEARCH_PAGE = 1
+	#login and register states
+	LOGIN_ERROR = -1
+	NO_LOGIN_ERROR = 1
 
   def create
   	user = User.new(user_params(params))
@@ -13,12 +16,12 @@ class UserController < ApplicationController
 		session[:user] = user.id
 		render :json => {
 			:user => user.to_json,
-			:login_first_try => 1, #valid login or register is 1
+			:login_state => NO_LOGIN_ERROR,
 			:page => WELCOME_PAGE,
 			:runs => []
 		}
   	else
-  		render :json => {:login_first_try => -1}#invalid login or register is -1
+  		render :json => {:login_state => LOGIN_ERROR}
   	end
   end
 
@@ -36,7 +39,7 @@ class UserController < ApplicationController
 	  		},
 		:page => HOME_PAGE,
 		:user => user,
-		:login_first_try => true
+		:login_state => true
 	}
   end
 
@@ -44,13 +47,13 @@ class UserController < ApplicationController
 		user = User.find_by_login(params[:login])
 		if user.nil?
 			render :json => {
-				:login_first_try => -1,
+				:login_state => LOGIN_ERROR,
 				:page => LOGIN_PAGE
 			}
 		else
 			session[:user] = user.id
 			render :json => {
-				:login_first_try => 1,
+				:login_state => NO_LOGIN_ERROR,
 				:runs => Run.find_all_by_user_id(user.id),
 				:page => HOME_PAGE,
 				:user => user.to_json,
@@ -66,7 +69,7 @@ class UserController < ApplicationController
 	  			:csrf_token => form_authenticity_token
 	  		},
 			:user => nil,
-			:login_first_try => 1,
+			:login_state => NO_LOGIN_ERROR,
 			:page => WELCOME_PAGE
 		}
 	end

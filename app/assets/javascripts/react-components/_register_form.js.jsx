@@ -6,6 +6,7 @@ var RegisterForm = React.createClass({
 		return {error_message: ""}
 	},
 
+	/*This handles when a new user is being created*/
 	handleSubmit: function(event) {
 		event.preventDefault();
 		var login = this.refs.login.getDOMNode().value
@@ -13,15 +14,14 @@ var RegisterForm = React.createClass({
 		var last_name = this.refs.last_name.getDOMNode().value
 		if (!login || !first_name || !last_name) {
 			this.setState({error_message: "Please fill out all form fields"});
-			return false;
 		}
 		var formData = new FormData(this.refs.form.getDOMNode());
 		if(!this.props.onRegister(formData, this.props.action)) {/*Invalid register*/
 			this.setState({error_message: "Login is already taken"})
 		}
-		return false;
 	},
 
+	/*This handles when the user presses the back button*/
 	handleBack: function(event) {
 		event.preventDefault();
 		var WELCOME_PAGE = 0;

@@ -1,14 +1,17 @@
 /** @jsx React.DOM */
 
 var WelcomePage = React.createClass({
-	//There is probably a better way to decompose this...
+
+	/*This handles the event where a user clicks register*/
 	handleRegister: function(event) {
-		var page_number = 1;
-		this.props.onWelcomeClick(page_number);
+		var register_page = 1;
+		this.props.onWelcomeClick(register_page);
 	},
+
+	/*This handles the event where a user clicks login*/
 	handleLogin: function(event) {
-		var page_number = 2;
-		this.props.onWelcomeClick(page_number);
+		var login_page = 2;
+		this.props.onWelcomeClick(login_page);
 	},
 	render: function() {
 		return (

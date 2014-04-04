@@ -1,6 +1,8 @@
 /** @jsx React.DOM */
 
 var RunForm = React.createClass({
+
+	/*This handles a new run being created*/
 	handleSubmit: function (event) {
 		event.preventDefault();
 		var name = this.refs.name.getDOMNode().value.trim();
@@ -21,7 +23,6 @@ var RunForm = React.createClass({
 		this.refs.start_time.getDOMNode().value = '';
 		this.refs.end_time.getDOMNode().value = '';
 		this.refs.notes.getDOMNode().value = '';
-		return false;
 	},
 
 	render: function() {

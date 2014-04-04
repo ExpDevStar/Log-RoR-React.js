@@ -6,6 +6,7 @@ var LoginForm = React.createClass({
 		return {error_message: ""}
 	},
 
+	/*This handles when a user tries to log in*/
 	handleSubmit: function(event) {
 		event.preventDefault();
 		var login = this.refs.login.getDOMNode().value
@@ -19,6 +20,7 @@ var LoginForm = React.createClass({
 		}
 	},
 
+	/*This handles when the user presses the back button*/
 	handleBack: function(event) {
 		event.preventDefault();
 		var WELCOME_PAGE = 0;

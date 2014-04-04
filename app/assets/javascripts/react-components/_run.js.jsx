@@ -5,12 +5,15 @@ var Run = React.createClass({
 		return {edit: false};
 	},
 
-	handleEdit: function(event){ 
-		this.setState({edit: true})
+	/*Makes run edittable on click*/
+	handleEdit: function(event){
+		event.preventDefault();
+		this.setState({edit: true});
 		return false;
 	},
 
-	handleSubmit: function() {
+	/*Handles submitting editted run*/
+	handleEditSubmit: function(event) {
 		event.preventDefault();
 		var name = this.refs.name.getDOMNode().value.trim();
 		var distance = this.refs.distance.getDOMNode().value;
@@ -18,14 +21,27 @@ var Run = React.createClass({
 		var start_time = this.refs.start_time.getDOMNode().value;
 		var end_time = this.refs.end_time.getDOMNode().value;
 		var notes = this.refs.notes.getDOMNode().value.trim();
-		//validation
+		/*validation*/
 		if (!name || !distance || !date || !start_time || !end_time) return false;
+
+		/*Submits form*/
 		var formData = new FormData(this.refs.form.getDOMNode());
 		this.props.onRunSubmit(formData, this.props.editAction);
 		this.setState({edit: false})
 
 	},
 
+	/*Handles deleting a run*/
+	handleDelete: function(event) {
+		event.preventDefault();
+		/*Submits form with the id of the item to be deleted*/
+		var formData = new FormData();
+		formData.append('id', this.props.key);
+		formData.append(this.props.form.csrf_param, this.props.form.csrf_token);
+		this.props.onRunSubmit(formData, this.props.deleteAction);
+	},
+
+	/*Allows user to see an x when hovering over a run*/
 	handleMouseEnter: function(event) {
 		this.refs.delete_button.getDOMNode().innerHTML = 'x';
 	},
@@ -34,19 +50,11 @@ var Run = React.createClass({
 		this.refs.delete_button.getDOMNode().innerHTML = '';
 	},
 
-	handleDelete: function(event) {
-		event.preventDefault();
-		var formData = new FormData();
-		formData.append('id', this.props.key);
-		formData.append(this.props.form.csrf_param, this.props.form.csrf_token);
-		this.props.onRunSubmit(formData, this.props.deleteAction);
-	},
-
 
 	render: function() {
 		if (this.state.edit) {		
 			return (
-				<form ref="form" className="tr run" key={this.props.key} accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
+				<form ref="form" className="tr run" key={this.props.key} accept-charset="UTF-8" method="post" onSubmit={this.handleEditSubmit}>
 					<span className="cell first-col">
 						<input type="date" className="table-field" ref="date" name="date" defaultValue={ this.props.date } />
 					</span>
