@@ -151,6 +151,7 @@ p.error-message {
 .delete-button {
 	cursor: pointer;
 	padding-left: 10px;
+	width: 1px;
 	font-weight: bold;
 }
 
