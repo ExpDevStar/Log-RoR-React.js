@@ -15,8 +15,6 @@
 body, html {
 	text-align: center;
 	height: 100%;
-	color: #858181;
-
 }
 
 div.login_text {
@@ -24,11 +22,11 @@ div.login_text {
 }
 
 input.input-box {
-	height: 60px;
 	width: 140px;
-	margin: 5px;
 	font-size: 14px;
+	margin: 5px;
 }
+
 div.table-centered {
 	display: table;
 	margin-left: auto;
@@ -69,11 +67,11 @@ input.table-field {
 }
 .col-title span.cell {
 
-	padding-left: 20px;
+	padding-left: 5px;
 }
 
 .search-form {
-	padding-bottom: 20px;
+	/*padding-bottom: 20px;*/
 }
 
 form.tr {
@@ -88,7 +86,7 @@ span.td {
 span.cell {
 	display: table-cell;
 	text-align: left;
-	width: 145px;
+	width: 155px;
 }
 
 div.center-content {
