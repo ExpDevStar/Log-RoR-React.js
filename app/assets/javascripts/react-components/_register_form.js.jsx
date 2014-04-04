@@ -31,15 +31,15 @@ var RegisterForm = React.createClass({
 	render: function() {
 		return (
 			<div className="center-content">
-				<div className="error-message"><p>{this.state.error_message}</p></div>
+				<p className="error-message">{this.state.error_message}</p>
 				<form className="register-form" id="register-form" ref="form" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
 					<input className="input-box" ref="first_name" name="first_name" placeholder="First Name" />
 					<input className="input-box" ref="last_name" name="last_name" placeholder="Last Name" />
 					<input className="input-box" ref="login" name="login" placeholder="UserID" />
 					<input type="hidden" name={this.props.form.csrf_param} value={this.props.form.csrf_token} />
 				</form><br/>
-				<div className="button_link" onClick={this.handleBack}>Back</div>
-				<button type="submit" form="register-form" className="button_link">Register</button>
+				<div className="welcome-button button_link" onClick={this.handleBack}>Back</div>
+				<button type="submit" form="register-form" className="welcome-button button_link">Register</button>
 			</div>
 		);
 	}

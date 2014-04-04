@@ -25,13 +25,13 @@ var LoginForm = React.createClass({
 	render: function() {
 		return (
 			<div className="center-content">
-				<div className="error-message"><p>{this.state.error_message}</p></div>
+				<p className="error-message">{this.state.error_message}</p>
 				<form ref="form" id="login-form" accept-charset="UTF-8" method="post" onSubmit={this.handleSubmit}>
 					<input className="input-box" ref="login" name="login" placeholder="Login here" />
 					<input type="hidden" name={this.props.form.csrf_param} value={this.props.form.csrf_token} />
 				</form><br/>
-				<div className="button_link" onClick={this.handleBack}>Back</div>
-				<button type="submit" form="login-form" className="button_link">Login</button>
+				<div className="welcome-button button_link" onClick={this.handleBack}>Back</div>
+				<button type="submit" form="login-form" className="welcome-button button_link">Login</button>
 			</div>
 		);
 	}

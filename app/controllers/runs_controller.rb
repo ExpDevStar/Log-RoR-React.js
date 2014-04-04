@@ -1,9 +1,5 @@
 class RunsController < ApplicationController
 
-	def new
-		@run = Run.new
-	end
-
 	def create
 		@run = Run.new(run_params(params))
 		@run.user_id = session[:user]

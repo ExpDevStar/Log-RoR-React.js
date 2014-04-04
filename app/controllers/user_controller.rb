@@ -8,27 +8,25 @@ class UserController < ApplicationController
 	SEARCH_PAGE = 1
 
   def create
-  	@user = User.new(user_params(params))
-  	if @user.save
-		flash[:notice] = "Registration complete!"
-		session[:user] = @user.id
+  	user = User.new(user_params(params))
+  	if user.save
+		session[:user] = user.id
 		render :json => {
-			:user_id => @user.id,
-			:login_first_try => true,
+			:user => user.to_json,
+			:login_first_try => 1, #valid login or register is 1
 			:page => WELCOME_PAGE,
 			:runs => []
 		}
   	else
-  		render :json => {:login_first_try => false}
+  		render :json => {:login_first_try => -1}#invalid login or register is -1
   	end
   end
 
   def index
   	if session.has_key?(:user)
-  		user_id = session[:user]
-  		puts User.find(user_id).first_name
+  		user = User.find(session[:user])
   	else
-  		user_id = -1
+  		user = nil
   	end
   	@data = {
   		:runs => Run.find_all_by_user_id(session[:user]),
@@ -37,25 +35,25 @@ class UserController < ApplicationController
   			:csrf_token => form_authenticity_token
 	  		},
 		:page => HOME_PAGE,
-		:user_id => user_id,
-  		:login_first_try => true
-  		}
+		:user => user,
+		:login_first_try => true
+	}
   end
 
 	def login
 		user = User.find_by_login(params[:login])
 		if user.nil?
 			render :json => {
-				:user_id => -1,
-				:login_first_try => false,
+				:login_first_try => -1,
 				:page => LOGIN_PAGE
 			}
 		else
 			session[:user] = user.id
 			render :json => {
+				:login_first_try => 1,
 				:runs => Run.find_all_by_user_id(user.id),
 				:page => HOME_PAGE,
-				:user_id => user.id
+				:user => user.to_json,
 			}
 		end
 	end
@@ -67,8 +65,8 @@ class UserController < ApplicationController
 	  			:csrf_param => request_forgery_protection_token,
 	  			:csrf_token => form_authenticity_token
 	  		},
-			:user_id => -1,
-			:login_first_try => true,
+			:user => nil,
+			:login_first_try => 1,
 			:page => WELCOME_PAGE
 		}
 	end

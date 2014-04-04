@@ -46,8 +46,7 @@ var RunBox = React.createClass({
 			obj.setState(JSON.parse(responseText));
 		}
 		createXhrRequest(funct, "POST", action, formData);
-		if(this.state.firstTry) return true;
-		return false; /*Invalid login or register*/
+		return (this.state.login_first_try == 1) /*Valid login or register is 1*/
 	},
 
 	handleLogout: function(action) {
@@ -70,8 +69,10 @@ var RunBox = React.createClass({
 		/*Codes for user logged in*/
 		this.HOME_PAGE = 0;
 		this.SEARCH_PAGE = 1;
-		if (this.state.user_id != -1) {
-			var form;
+		console.log(this.state.user);
+		if (this.state.user != null) {
+			var run_form;
+			var search_form;
 			if (this.state.page == this.HOME_PAGE) {
 				run_form = new RunForm({form: this.state.form, onRunSubmit: this.handleRunSubmit, action: '/runs/create'});
 				search_form = <div className="hidden"></div>
@@ -100,7 +101,7 @@ var RunBox = React.createClass({
 							<div className="run-list">
 								{run_form}
 								{
-								new RunList({form: this.state.form, runs: this.state.runs, onRunSubmit: this.handleRunSubmit, action: '/runs/update'})
+								new RunList({user: this.state.user, form: this.state.form, runs: this.state.runs, onRunSubmit: this.handleRunSubmit, action: '/runs/update'})
 								}
 							</div>
 						</ReactCSSTransitionGroup>

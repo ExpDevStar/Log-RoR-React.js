@@ -13,8 +13,9 @@ var WelcomePage = React.createClass({
 	render: function() {
 		return (
 			<div className="center-content">
-				<div className="button_link" onClick={this.handleRegister}>Register</div>
-				<div className="button_link" onClick={this.handleLogin}>Login</div>
+				<p className="welcome-text">Welcome</p>
+				<div className="welcome-button button_link" onClick={this.handleRegister}>Register</div>
+				<div className="welcome-button button_link" onClick={this.handleLogin}>Login</div>
 			</div>
 		);
 	}
