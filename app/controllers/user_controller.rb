@@ -32,7 +32,7 @@ class UserController < ApplicationController
   		user = nil
   	end
   	@data = {
-  		:runs => Run.find_all_by_user_id(session[:user]),
+  		:runs => Run.find_all_by_user_id(session[:user], :order => 'date DESC'),
   		:form => {
   			:csrf_param => request_forgery_protection_token,
   			:csrf_token => form_authenticity_token

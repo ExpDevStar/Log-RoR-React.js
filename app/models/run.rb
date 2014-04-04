@@ -3,7 +3,7 @@ class Run < ActiveRecord::Base
 	validates_presence_of :name, :date, :distance, :start_time, :end_time
 
 	def self.filter(user_id, substr, start_date, end_date, distance_min, distance_max, min_time_length, max_time_length)
-		user_runs = Run.find_all_by_user_id(user_id)
+		user_runs = Run.find_all_by_user_id(user_id, :order => 'date DESC')
 		result_runs = Set.new
 		for run in user_runs
 			if !start_date.empty?

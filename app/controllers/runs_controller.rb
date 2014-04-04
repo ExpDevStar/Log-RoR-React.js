@@ -4,7 +4,7 @@ class RunsController < ApplicationController
 		@run = Run.new(run_params(params))
 		@run.user_id = session[:user]
 		if @run.save
-			render :json => Run.find_all_by_user_id(session[:user])
+			render :json => Run.find_all_by_user_id(session[:user], :order => 'date DESC')
 		else
 			#handle error
 		end
@@ -13,7 +13,7 @@ class RunsController < ApplicationController
 	def update
 		@run = Run.find(params[:id])
 		if @run.update(run_params(params))
-			render :json => Run.find_all_by_user_id(session[:user])
+			render :json => Run.find_all_by_user_id(session[:user], :order => 'date DESC')
 		else
 			puts("Could not find the object to update")#error here
 		end
@@ -21,7 +21,7 @@ class RunsController < ApplicationController
 
 	def delete
 		Run.destroy(params[:id])
-		render :json => Run.find_all_by_user_id(session[:user])
+		render :json => Run.find_all_by_user_id(session[:user], :order => 'date DESC')
 	end
 
 
