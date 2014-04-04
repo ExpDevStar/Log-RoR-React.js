@@ -44,7 +44,7 @@ var RunForm = React.createClass({
 						<input className="table-field" type="time" ref="end_time" name="end_time" />
 					</span>
 					<span className="cell">
-						<input className="table-field" ref="notes" name="notes" />
+						<input className="table-field" ref="notes" name="notes" placeholder="Optional" />
 					</span>
 					<input type="hidden" name={this.props.form.csrf_param} value={this.props.form.csrf_token} />
 					<input type="submit" className="hidden-field"/>

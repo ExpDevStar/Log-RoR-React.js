@@ -57,7 +57,7 @@ var RunBox = React.createClass({
 	},
 
 	handlePageChange: function(page_num) {
-		this.setState({page: page_num});
+		this.setState({page: page_num, login_first_try: 1});
 	},
 
 	render: function() {
