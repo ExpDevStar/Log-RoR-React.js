@@ -12,7 +12,7 @@ gem 'pg'
 gem 'sass-rails', '~> 4.0.0'
 
 # Use bootstrap
-gem 'bootstrap-sass', '~> 3.1.1'
+gem 'bootstrap-sass', '~> 3.4.1'
 
 gem 'twitter-bootstrap-rails'
 
